@@ -17,7 +17,7 @@ START:
     mov ax, mydata
     mov es, ax
 
-    lea di, g_szStr1
+    lea si, g_szStr1
     lea di, g_szStr3
 
     cmpsb
