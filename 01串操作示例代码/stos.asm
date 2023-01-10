@@ -2,6 +2,10 @@ mystack segment stack
     db 512 dup(0)
 mystack ends
 
+mydata segment
+    g_szStr2 db 16 dup(0)
+mydata ends
+
 mycode segment
 START:
     assume ds:mydata
