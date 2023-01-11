@@ -5,37 +5,39 @@ mystack ends
 mydata segment
     g_szEnt db 0AH, 0DH, '$'
     g_szNojmp db "No jmp$" 
-    g_szNear db "jmp near$"
+    g_szNear db "jmp near",0AH, 0DH,'$'
     g_szShort db "jmp short$"
-    g_szFor db "jmp for$"
     g_szOut db "output:$"
 mydata ends 
 
 forptr  segment
 
+g_szFor db "jmp for",0AH, 0DH, '$'
 JMPFOR:
+
+    mov ax, forptr
+    mov ds, ax
+
     xor ax, ax
     mov ah, 09H
     mov dx, offset g_szFor
     int 21H
 
-    xor ax, ax
-    mov ah, 09H
-    mov dx, offset g_szEnt
+    mov ax, 4c00H
     int 21H
-
 forptr ends
 
 mycode segment
 START:
     assume ds:mydata
+    assume ds:forptr
     mov ax, mydata
     mov ds, ax
 
     ; 进行短跳
     jmp short JMPSHORT
 
-    db 107 dup(0)
+    db 102 dup(0)
 
     xor ax, ax
     mov ah, 09H
@@ -80,6 +82,7 @@ JMPNEAR:
     int 21H
 
     ; 进行远跳
+    jmp far ptr JMPFOR
 
     mov ax, 4c00H
     int 21H
