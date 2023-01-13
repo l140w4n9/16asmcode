@@ -11,6 +11,8 @@ memset PROC far c uses cx di dest:word, char:word, count:word
     mov cx, count
     mov ax, char
     rep stosb
+    
+    mov ax, dest
 
     ret 6
 memset ENDP
