@@ -15,4 +15,4 @@
 
 
 效果图
-img[https://github.com/l140w4n9/16asmcode/blob/main/image/GIF%202023-01-17%2012-16-10.gif]
+![image](https://github.com/l140w4n9/16asmcode/blob/main/image/GIF%202023-01-17%2012-16-10.gif)
